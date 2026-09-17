@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics><meta name="design_doc_mode" content="canvas"><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;500;600&family=Barlow+Condensed:wght@500;600;700&display=swap" rel="stylesheet"><style>body{margin:0;background:#e9ebee;font-family:Barlow,system-ui,sans-serif;color:#14181f}a{color:#14181f;text-decoration:none}a:hover{color:#1f6f9c}.dv-turn{padding:40px 44px 32px;border-bottom:1px solid rgba(0,0,0,.08);scroll-margin-top:16px}.dv-thd{display:flex;align-items:baseline;gap:10px;margin:0 0 20px}.dv-tid{font:600 10px ui-monospace,Menlo,monospace;padding:3px 7px;background:#1a1a1a;color:#fff;border-radius:4px;text-decoration:none}.dv-tname{font:600 13px/1.2 system-ui,sans-serif;color:#1a1a1a}.dv-opts{display:flex;flex-wrap:wrap;gap:28px;align-items:flex-start}.dv-opt{flex:none;display:flex;flex-direction:column;gap:9px;scroll-margin-top:16px}.dv-oid{font:600 10.5px ui-monospace,Menlo,monospace;padding:3px 7px;background:rgba(0,0,0,.08);color:#1a1a1a;border-radius:5px;text-decoration:none}.dv-olabel{display:flex;align-items:baseline;gap:8px;font:400 11px/1.3 system-ui,sans-serif;color:rgba(0,0,0,.55)}.dv-card{max-width:100%;background:#fff;border:1px solid rgba(0,0,0,.08);border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.06);overflow:hidden}.dv-opt:target .dv-oid{background:#2a78d6;color:#fff}.dv-next{margin:22px 0 0;font:12px/1.5 system-ui,sans-serif;color:rgba(0,0,0,.5)}.dv-note{max-width:900px;font:13px/1.55 system-ui,sans-serif;color:rgba(0,0,0,.65);margin:0 0 22px}.dv-note b{color:#14181f}</style></helmet>
+<section class="dv-turn" id="t3">
+<div class="dv-thd"><a class="dv-tid" href="#t3">3</a><span class="dv-tname">Filters on <a class="dv-oid" href="#2a">2a</a> — boot type prominent, riding style secondary</span></div>
+<p class="dv-note"><b>Assumption:</b> riding-style categories (Freeride, Powder, Big Mountain, Carving) are taken from your screenshot; I mapped each model to one myself — twins &amp; all-mountain → Freeride, Aloha/Baker/Kona → Powder, Saber SBX/Flux → Big Mountain, B‑1s &amp; every hardboot → Carving. Correct any and I'll update.</p>
+<div class="dv-opts">
+<div class="dv-opt" id="3a"><div class="dv-olabel"><a class="dv-oid" href="#3a">3a</a>One “Filter by” row — boot type first and bold, riding style after a divider</div>
+<div class="dv-card" style="width:1440px" data-screen-label="3a Filters">
+  <div style="padding:88px 96px 96px;background:#fff">
+    <h2 style="margin:0 0 28px;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">Snowboards</h2>
+    <div style="display:flex;align-items:center;gap:28px;padding-bottom:16px;border-bottom:1px solid #e3e6ea;margin-bottom:32px">
+      <span style="font:600 12px/1 Barlow,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#8a94a0">Filter by:</span>
+      <div style="display:flex;gap:26px;align-items:center">
+        <button onClick="{{ bootAll }}" style="{{ bootAllStyle }}">All</button>
+        <button onClick="{{ bootSoft }}" style="{{ bootSoftStyle }}"><span style="width:10px;height:10px;border-radius:50%;background:#3aa7dc;display:inline-block"></span>Softboot snowboards</button>
+        <button onClick="{{ bootHard }}" style="{{ bootHardStyle }}"><span style="width:10px;height:10px;border-radius:50%;background:#f0a23a;display:inline-block"></span>alpine hardboot snowboards</button>
+      </div>
+      <div style="display:flex;gap:26px">
+        <sc-for list="{{ styles }}" as="s" hint-placeholder-count="5">
+          <button onClick="{{ s.pick }}" style="{{ s.style }}">{{ s.label }}</button>
+        </sc-for>
+      </div>
+      <span style="margin-left:auto;font:500 13px/1 Barlow,sans-serif;color:#5b6572">{{ filterCount }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+      <sc-for list="{{ visible3 }}" as="b" hint-placeholder-count="15">
+        <a href="#" style="{{ b.cardStyle }}">
+          <span style="display:flex;align-items:center;justify-content:space-between;gap:6px;padding:10px 12px 0;font:600 11px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5b6572"><span style="display:flex;align-items:center;gap:6px"><span style="{{ b.dotStyle }}"></span>{{ b.type }}</span><span style="color:#8a94a0">{{ b.category }}</span></span>
+          <span style="height:240px;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="max-height:220px;max-width:80%;object-fit:contain"></span>
+          <span style="display:flex;flex-direction:column;gap:5px;padding:0 12px 14px"><span style="font:600 15px/1.25 Barlow,sans-serif">{{ b.name }}</span><span style="font:500 14px/1 Barlow,sans-serif;color:#2a313b">{{ b.price }}</span></span>
+        </a>
+      </sc-for>
+    </div>
+    <sc-if value="{{ showControls3 }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:40px">
+        <div style="display:flex;gap:12px">
+          <sc-if value="{{ hasMore3 }}" hint-placeholder-val="{{ true }}">
+            <button onClick="{{ loadMore3 }}" style="background:#0f1a26;color:#fff;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:16px 36px;border:0;cursor:pointer" style-hover="background:#1f6f9c">Load more</button>
+          </sc-if>
+          <sc-if value="{{ canLess3 }}" hint-placeholder-val="{{ false }}">
+            <button onClick="{{ loadLess3 }}" style="background:#fff;color:#0f1a26;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:14px 36px;border:2px solid #0f1a26;cursor:pointer" style-hover="background:#f4f5f7">Load less</button>
+          </sc-if>
+        </div>
+        <span style="font:500 13px/1 Barlow,sans-serif;color:#5b6572">{{ shownLabel3 }}</span>
+      </div>
+    </sc-if>
+  </div>
+</div></div>
+</div>
+<p class="dv-next">Try next: "put <a class="dv-oid" href="#3a">3a</a> into the <a class="dv-oid" href="#1a">1a</a> homepage" · "make the riding-style filter multi-select" · "show the filter as a left sidebar"</p>
+</section>
+<section class="dv-turn" id="t2">
+<div class="dv-thd"><a class="dv-tid" href="#t2">2</a><span class="dv-tname">Riff on <a class="dv-oid" href="#1c">1c</a> — 5 per row, load more after row 3</span></div>
+<div class="dv-opts">
+<div class="dv-opt" id="2a"><div class="dv-olabel"><a class="dv-oid" href="#2a">2a</a>Shared grid · 5 per row · 15 shown, “Load more” reveals the rest</div>
+<div class="dv-card" style="width:1440px" data-screen-label="2a Shared grid load more">
+  <div style="padding:88px 96px 96px;background:#fff">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:32px;flex-wrap:wrap">
+      <h2 style="margin:0;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">Snowboards</h2>
+      <div style="display:flex;gap:10px">
+        <button onClick="{{ toggleSoft }}" style="{{ chipSoftStyle }}"><span style="width:10px;height:10px;border-radius:50%;background:#3aa7dc;display:inline-block"></span>Softboot snowboards</button>
+        <button onClick="{{ toggleHard }}" style="{{ chipHardStyle }}"><span style="width:10px;height:10px;border-radius:50%;background:#f0a23a;display:inline-block"></span>alpine hardboot snowboards</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:16px">
+      <sc-for list="{{ visible }}" as="b" hint-placeholder-count="15">
+        <a href="#" style="{{ b.cardStyle }}">
+          <span style="display:flex;align-items:center;gap:6px;padding:10px 12px 0;font:600 11px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5b6572"><span style="{{ b.dotStyle }}"></span>{{ b.type }}</span>
+          <span style="height:240px;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="max-height:220px;max-width:80%;object-fit:contain"></span>
+          <span style="display:flex;flex-direction:column;gap:5px;padding:0 12px 14px"><span style="font:600 15px/1.25 Barlow,sans-serif">{{ b.name }}</span><span style="font:500 14px/1 Barlow,sans-serif;color:#2a313b">{{ b.price }}</span></span>
+        </a>
+      </sc-for>
+    </div>
+    <sc-if value="{{ hasMore }}" hint-placeholder-val="{{ true }}">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:12px;margin-top:40px">
+        <button onClick="{{ loadMore }}" style="background:#0f1a26;color:#fff;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;text-transform:uppercase;padding:16px 36px;border:0;cursor:pointer" style-hover="background:#1f6f9c">Load more</button>
+        <span style="font:500 13px/1 Barlow,sans-serif;color:#5b6572">{{ shownLabel }}</span>
+      </div>
+    </sc-if>
+  </div>
+</div></div>
+</div>
+<p class="dv-next">Try next: "put <a class="dv-oid" href="#2a">2a</a> into the <a class="dv-oid" href="#1a">1a</a> homepage" · "load more reveals 5 at a time" · "sort hardboot first"</p>
+</section>
+<section class="dv-turn" id="t1">
+<div class="dv-thd"><a class="dv-tid" href="#t1">1</a><span class="dv-tname">Donek homepage — softboot + alpine hardboot in one place</span></div>
+<p class="dv-note"><b>Assumptions:</b> I couldn't open the Figma prototype, so copy and section order come from the live donek.com homepage (announcement bar → hero → intro → 4 tiles → Best selling → Apparel → Softboot → Alpine hardboot → News → footer). No copy was added; the merged section is titled “Snowboards”, a word already in the nav, and its two labels reuse the existing section headings verbatim. <b>Reasoning:</b> the confusion risk is a rider seeing a $660 Talon next to a $1,515 B‑1 and not knowing they're different disciplines — so every card in a mixed context carries a boot-type tag, and the type is always visible while scrolling. Board photos are pulled from the live site; hero/tile imagery is placeholder.</p>
+<div class="dv-opts">
+
+<div class="dv-opt" id="1a"><div class="dv-olabel"><a class="dv-oid" href="#1a">1a</a>Full homepage — one “Snowboards” section with a Softboot / Alpine hardboot switch (recommended)</div>
+<div class="dv-card" style="width:1440px" data-screen-label="1a Full homepage">
+  <div style="background:#0f1a26;color:#dfe7ef;font:500 13px/1.4 Barlow,sans-serif;text-align:center;padding:9px 24px;font-style:italic">Due to exceptionally high order volumes, custom builds are currently experiencing an approximate 8-week lead time. We greatly appreciate your enthusiasm and support, and thank you for your patience.</div>
+  <div style="display:flex;align-items:center;gap:36px;padding:0 48px;height:76px;background:#fff;border-bottom:1px solid #e3e6ea">
+    <div style="font:700 30px/1 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#0f1a26">DONEK<span style="color:#3aa7dc">.</span></div>
+    <nav style="display:flex;gap:26px;font:500 14px/1 Barlow,sans-serif;flex:1">
+      <a href="#">Home</a><a href="#">Snowboard Models &amp; Custom Options</a><a href="#">In Stock &amp; Accessories</a><a href="#">Events</a><a href="#">FAQ</a><a href="#">News</a><a href="#">About Us</a>
+    </nav>
+    <div style="display:flex;gap:22px;align-items:center;font:500 14px/1 Barlow,sans-serif">
+      <span style="width:16px;height:16px;border:2px solid #14181f;border-radius:50%;display:inline-block;position:relative"></span>
+      <span>Cart / $0.00</span>
+    </div>
+  </div>
+  <div style="position:relative;height:640px;background:repeating-linear-gradient(135deg,#1c2733 0 14px,#223140 14px 28px);color:#fff;display:flex;flex-direction:column;justify-content:flex-end;padding:0 96px 88px">
+    <div style="position:absolute;top:24px;right:28px;font:12px/1 ui-monospace,Menlo,monospace;color:rgba(255,255,255,.6);letter-spacing:.06em">hero photo · rider carving</div>
+    <div style="font:600 22px/1 'Barlow Condensed',sans-serif;letter-spacing:.18em;text-transform:uppercase;color:#7fd0f5;margin-bottom:18px">The ride of your life awaits</div>
+    <h1 style="margin:0 0 14px;font:700 58px/1.02 'Barlow Condensed',sans-serif;max-width:900px;text-wrap:pretty">FEEL THE DIFFERENCE A DONEK CUSTOM SNOWBOARD MAKES, AND NEVER COMPROMISE AGAIN.</h1>
+    <div style="font:500 20px/1.3 'Barlow Condensed',sans-serif;letter-spacing:.06em;color:#cfdbe6;margin-bottom:34px">HANDCRAFTED IN COLORADO, UNIQUELY DESIGNED FOR YOUR NEEDS</div>
+    <div style="display:flex;gap:14px">
+      <a href="#" style="background:#3aa7dc;color:#08131c;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;padding:16px 28px;text-transform:uppercase">EXPLORE SNOWBOARDS</a>
+      <a href="#" style="border:2px solid #fff;color:#fff;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;padding:14px 28px;text-transform:uppercase">START A CUSTOM BOARD</a>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:64px;padding:88px 96px;align-items:center;background:#fff">
+    <p style="margin:0;font:400 19px/1.55 Barlow,sans-serif;color:#2a313b;text-wrap:pretty">Whether you’re laying down carves, racing gates, slashing pow, or catching air, a Donek Custom Snowboard is sure to upgrade your performance on the hill. Each Donek board is custom built based on the rider’s needs and measurements, and you never have to compromise when it comes to aesthetics. Browse and compare our available board models and complete the form below to provide our engineers with information about you and your riding. Our team of experts will assist you with choosing the board, sizing, and specifications that are right for you. You can choose a topsheet and base graphic from our library, send in your custom artwork, or work with our in-house designer to create a one of a kind graphic that’s sure to turn some heads on the mountain.</p>
+    <div style="display:flex;flex-direction:column;gap:26px;align-items:flex-start">
+      <div style="width:100%;height:300px;background:repeating-linear-gradient(135deg,#e6e9ed 0 12px,#eef0f3 12px 24px);display:flex;align-items:flex-end;padding:14px;box-sizing:border-box;font:12px/1 ui-monospace,Menlo,monospace;color:#6b7480">factory photo · board press</div>
+      <a href="#" style="background:#0f1a26;color:#fff;font:700 15px/1 'Barlow Condensed',sans-serif;letter-spacing:.14em;padding:16px 30px;text-transform:uppercase">start here</a>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;background:#0f1a26">
+    <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="4">
+      <a href="#" style="display:flex;align-items:flex-end;height:300px;padding:26px 28px;box-sizing:border-box;background:repeating-linear-gradient(135deg,#182534 0 14px,#1f2f40 14px 28px);color:#fff;position:relative">
+        <span style="position:absolute;top:16px;left:28px;font:11px/1 ui-monospace,Menlo,monospace;color:rgba(255,255,255,.5)">{{ t.img }}</span>
+        <span style="font:700 32px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.04em;border-bottom:3px solid #3aa7dc;padding-bottom:8px">{{ t.label }}</span>
+      </a>
+    </sc-for>
+  </div>
+
+  <div style="padding:88px 96px 96px;background:#f4f5f7">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:28px;flex-wrap:wrap">
+      <h2 style="margin:0;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">Snowboards</h2>
+      <div style="display:flex;background:#fff;border:1px solid #d9dee4;padding:4px;gap:4px" role="tablist">
+        <button onClick="{{ pickSoft }}" style="{{ tabSoftStyle }}">Softboot snowboards</button>
+        <button onClick="{{ pickHard }}" style="{{ tabHardStyle }}">alpine hardboot snowboards</button>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;margin-bottom:26px;font:500 13px/1 Barlow,sans-serif;color:#5b6572">
+      <span style="{{ activeTagStyle }}">{{ activeTag }}</span>
+      <span>{{ activeCount }}</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <sc-for list="{{ activeBoards }}" as="b" hint-placeholder-count="8">
+        <a href="#" style="background:#fff;border:1px solid #e3e6ea;display:flex;flex-direction:column;position:relative" style-hover="border-color:#3aa7dc">
+          <span style="{{ b.tagStyle }}">{{ b.type }}</span>
+          <span style="height:300px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#f1f3f5 0 10px,#f7f8f9 10px 20px);overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="max-height:270px;max-width:80%;object-fit:contain"></span>
+          <span style="display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px">
+            <span style="font:600 17px/1.2 Barlow,sans-serif">{{ b.name }}</span>
+            <span style="display:flex;justify-content:space-between;align-items:center;font:500 15px/1 Barlow,sans-serif;color:#2a313b"><span>{{ b.price }}</span><span style="font:600 12px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#1f6f9c">Quick View</span></span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:88px 96px;background:#fff">
+    <h2 style="margin:0 0 28px;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">Best selling boards</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <sc-for list="{{ bestSelling }}" as="b" hint-placeholder-count="8">
+        <a href="#" style="background:#fff;border:1px solid #e3e6ea;display:flex;flex-direction:column;position:relative" style-hover="border-color:#3aa7dc">
+          <span style="{{ b.tagStyle }}">{{ b.type }}</span>
+          <span style="height:300px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#f1f3f5 0 10px,#f7f8f9 10px 20px);overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="max-height:270px;max-width:80%;object-fit:contain"></span>
+          <span style="display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px">
+            <span style="font:600 17px/1.2 Barlow,sans-serif">{{ b.name }}</span>
+            <span style="display:flex;justify-content:space-between;align-items:center;font:500 15px/1 Barlow,sans-serif;color:#2a313b"><span>{{ b.price }}</span><span style="font:600 12px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#1f6f9c">Quick View</span></span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:88px 96px;background:#f4f5f7">
+    <h2 style="margin:0 0 28px;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">apparel and merchandise</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <sc-for list="{{ apparel }}" as="p" hint-placeholder-count="8">
+        <a href="#" style="background:#fff;border:1px solid #e3e6ea;display:flex;flex-direction:column" style-hover="border-color:#3aa7dc">
+          <span style="height:220px;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#f1f3f5 0 10px,#f7f8f9 10px 20px);overflow:hidden"><img src="{{ p.img }}" alt="{{ p.name }}" style="max-height:190px;max-width:80%;object-fit:contain"></span>
+          <span style="display:flex;flex-direction:column;gap:6px;padding:16px 18px 18px">
+            <span style="font:600 17px/1.2 Barlow,sans-serif">{{ p.name }}</span>
+            <span style="display:flex;justify-content:space-between;align-items:center;font:500 15px/1 Barlow,sans-serif;color:#2a313b"><span>{{ p.price }}</span><span style="font:600 12px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#1f6f9c">Quick View</span></span>
+          </span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="padding:88px 96px;background:#fff">
+    <h2 style="margin:0 0 28px;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">Latest News</h2>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:20px">
+      <sc-for list="{{ news }}" as="n" hint-placeholder-count="4">
+        <a href="#" style="display:flex;flex-direction:column;gap:14px">
+          <span style="height:190px;background:repeating-linear-gradient(135deg,#e6e9ed 0 12px,#eef0f3 12px 24px);display:flex;align-items:flex-end;padding:12px;box-sizing:border-box;font:11px/1 ui-monospace,Menlo,monospace;color:#6b7480">post image</span>
+          <span style="font:600 13px/1 'Barlow Condensed',sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#1f6f9c">{{ n.date }}</span>
+          <span style="font:600 19px/1.25 Barlow,sans-serif;text-wrap:pretty">{{ n.title }}</span>
+          <span style="font:400 14px/1.5 Barlow,sans-serif;color:#5b6572">{{ n.excerpt }}</span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+
+  <div style="background:#0f1a26;color:#cfdbe6;padding:64px 96px 40px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:48px;font:400 14px/1.6 Barlow,sans-serif">
+    <div><div style="font:700 26px/1 'Barlow Condensed',sans-serif;color:#fff;margin-bottom:14px">Donek Snowboards</div>35907 E 88th Ave Watkins, CO 80137.<br>Email: info@donek.com</div>
+    <div><div style="font:700 26px/1 'Barlow Condensed',sans-serif;color:#fff;margin-bottom:14px">International Distributors</div><a href="#" style="color:#cfdbe6">Korea</a> | <a href="#" style="color:#cfdbe6">Russia</a> | <a href="#" style="color:#cfdbe6">China</a></div>
+    <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end;text-align:right"><div style="display:flex;gap:8px"><span style="border:1px solid #3b4a5b;padding:5px 10px;font-size:12px">PayPal</span><span style="border:1px solid #3b4a5b;padding:5px 10px;font-size:12px">Visa</span><span style="border:1px solid #3b4a5b;padding:5px 10px;font-size:12px">MasterCard</span></div><div><a href="#" style="color:#cfdbe6">Site Map</a> | <a href="#" style="color:#cfdbe6">XML Site Map</a></div><div>Copyright 2026 © <b style="color:#fff">Donek Snowboards</b></div></div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1b"><div class="dv-olabel"><a class="dv-oid" href="#1b">1b</a>Boards section only — two labelled columns, both types visible at once</div>
+<div class="dv-card" style="width:1440px" data-screen-label="1b Two columns">
+  <div style="padding:88px 96px 96px;background:#f4f5f7">
+    <h2 style="margin:0 0 36px;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">Snowboards</h2>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:#0f1a26;color:#fff;border-left:6px solid #3aa7dc"><span style="font:700 26px/1 'Barlow Condensed',sans-serif;text-transform:uppercase">Softboot snowboards</span><span style="font:500 13px/1 Barlow,sans-serif;color:#9fb3c6">{{ softCount }}</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <sc-for list="{{ softboot }}" as="b" hint-placeholder-count="8">
+            <a href="#" style="background:#fff;border:1px solid #e3e6ea;display:flex;gap:14px;padding:12px;align-items:center" style-hover="border-color:#3aa7dc">
+              <span style="width:72px;height:120px;flex:none;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#f1f3f5 0 8px,#f7f8f9 8px 16px);overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="max-height:110px;max-width:80%;object-fit:contain"></span>
+              <span style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font:600 15px/1.25 Barlow,sans-serif">{{ b.name }}</span><span style="font:500 14px/1 Barlow,sans-serif;color:#2a313b">{{ b.price }}</span><span style="font:600 11px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#1f6f9c">Quick View</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:14px;padding:14px 18px;background:#0f1a26;color:#fff;border-left:6px solid #f0a23a"><span style="font:700 26px/1 'Barlow Condensed',sans-serif;text-transform:uppercase">alpine hardboot snowboards</span><span style="font:500 13px/1 Barlow,sans-serif;color:#9fb3c6">{{ hardCount }}</span></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+          <sc-for list="{{ hardboot }}" as="b" hint-placeholder-count="8">
+            <a href="#" style="background:#fff;border:1px solid #e3e6ea;display:flex;gap:14px;padding:12px;align-items:center" style-hover="border-color:#f0a23a">
+              <span style="width:72px;height:120px;flex:none;display:flex;align-items:center;justify-content:center;background:repeating-linear-gradient(135deg,#f1f3f5 0 8px,#f7f8f9 8px 16px);overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="max-height:110px;max-width:80%;object-fit:contain"></span>
+              <span style="display:flex;flex-direction:column;gap:6px;min-width:0"><span style="font:600 15px/1.25 Barlow,sans-serif">{{ b.name }}</span><span style="font:500 14px/1 Barlow,sans-serif;color:#2a313b">{{ b.price }}</span><span style="font:600 11px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#1f6f9c">Quick View</span></span>
+            </a>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</div></div>
+
+<div class="dv-opt" id="1c"><div class="dv-olabel"><a class="dv-oid" href="#1c">1c</a>Boards section only — one shared grid, colour-coded by boot type, filter chips</div>
+<div class="dv-card" style="width:1440px" data-screen-label="1c Shared grid">
+  <div style="padding:88px 96px 96px;background:#fff">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:32px;margin-bottom:32px;flex-wrap:wrap">
+      <h2 style="margin:0;font:700 44px/1 'Barlow Condensed',sans-serif;text-transform:uppercase;letter-spacing:.02em">Snowboards</h2>
+      <div style="display:flex;gap:10px">
+        <button onClick="{{ toggleSoft }}" style="{{ chipSoftStyle }}"><span style="width:10px;height:10px;border-radius:50%;background:#3aa7dc;display:inline-block"></span>Softboot snowboards</button>
+        <button onClick="{{ toggleHard }}" style="{{ chipHardStyle }}"><span style="width:10px;height:10px;border-radius:50%;background:#f0a23a;display:inline-block"></span>alpine hardboot snowboards</button>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:16px">
+      <sc-for list="{{ filtered }}" as="b" hint-placeholder-count="12">
+        <a href="#" style="{{ b.cardStyle }}">
+          <span style="display:flex;align-items:center;gap:6px;padding:10px 12px 0;font:600 11px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#5b6572"><span style="{{ b.dotStyle }}"></span>{{ b.type }}</span>
+          <span style="height:220px;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="max-height:200px;max-width:80%;object-fit:contain"></span>
+          <span style="display:flex;flex-direction:column;gap:5px;padding:0 12px 14px"><span style="font:600 14px/1.25 Barlow,sans-serif">{{ b.name }}</span><span style="font:500 13px/1 Barlow,sans-serif;color:#2a313b">{{ b.price }}</span></span>
+        </a>
+      </sc-for>
+    </div>
+  </div>
+</div></div>
+
+</div>
+<p class="dv-next">Try next: "use the <a class="dv-oid" href="#1b">1b</a> columns inside the <a class="dv-oid" href="#1a">1a</a> homepage" · "make <a class="dv-oid" href="#1c">1c</a> the boards section and drop Best selling" · "mobile version of <a class="dv-oid" href="#1a">1a</a>"</p>
+</section>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;tagStyle&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;chip&quot;,&quot;bar&quot;],&quot;default&quot;:&quot;chip&quot;,&quot;tsType&quot;:&quot;'chip'|'bar'&quot;,&quot;section&quot;:&quot;Boards&quot;},&quot;defaultTab&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;soft&quot;,&quot;hard&quot;],&quot;default&quot;:&quot;soft&quot;,&quot;tsType&quot;:&quot;'soft'|'hard'&quot;,&quot;section&quot;:&quot;Boards&quot;}}">
+class Component extends DCLogic {
+  state = { tab: null, soft: true, hard: true, shown: 15, boot: 'all', style: 'All', shown3: 15 };
+  renderVals() {
+    const U = 'https://donek.com/wp-content/uploads/';
+    const SOFT = 'Softboot snowboards', HARD = 'alpine hardboot snowboards';
+    const soft = [
+      ['Park Twin Custom Snowboard','$840.00','2021/06/Park-Twin.png'],['Transition Custom Snowboard','$1,015.00','2021/08/transition.png'],['Knapton Twin Custom Snowboard','$865.00','2021/06/Knapton-1.png'],['Twin Engine Custom Snowboard','$865.00','2025/01/taperedtwin.png'],['Tapered Twin Custom Snowboard','$865.00','2025/01/taperedtwin.png'],['Scythe Custom Snowboard','$865.00','2021/06/Incline.png'],['Incline Custom Snowboard','$865.00','2021/06/Incline.png'],['Saber SBX Custom Snowboard','$1,015.00','2021/06/saber.png'],['Flux Custom Snowboard','$1,040.00','2021/06/flux.png'],['B-1 Super-Sport','$1,515.00','2024/05/B-1s-Super-Sport.png'],['B-1s','$1,515.00','2020/09/b1s-7-graphic-01.png'],['Aloha Custom Snowboard','$915.00','2020/12/aloha-topsheet.png'],['Baker Custom Snowboard','$965.00','2021/08/baker.png'],['Sabbath','$865.00','2025/04/Death-Vine-preview-01.png'],['Junior Custom Snowboard','$560.00','2021/08/junior.png'],['Kona Custom Snowboard','$1,265.00','2024/03/kona.png']
+    ];
+    const hard = [
+      ['MK Custom Snowboard','$1,215.00 – $1,245.00','2018/07/mk-graphic-2018.png'],['Pulse purchase','$1,015.00','2014/09/pulsetemplate.png'],['Pulse Custom Snowboard','$1,015.00','2014/09/pulsetemplate.png'],['Secret purchase','$1,390.00','2016/10/pulse-solid-black.png'],['Secret Custom Snowboard','$1,290.00','2016/10/pulse-solid-black.png'],['Talon purchase','$660.00','2019/08/tallon_eagle.png'],['Talon Custom Snowboard','$660.00','2019/08/tallon_eagle.png'],['Voyager purchase','$1,015.00','2015/10/legacy-PantherS.png']
+    ];
+    const tagStyle = this.props.tagStyle ?? 'chip';
+    const mk = (type) => ([name, price, img]) => {
+      const isSoft = type === SOFT, c = isSoft ? '#3aa7dc' : '#f0a23a';
+      const shortType = isSoft ? 'Softboot' : 'Alpine hardboot';
+      const CAT = {'Aloha Custom Snowboard':'Powder','Baker Custom Snowboard':'Powder','Kona Custom Snowboard':'Powder','Saber SBX Custom Snowboard':'Big Mountain','Flux Custom Snowboard':'Big Mountain','B-1 Super-Sport':'Carving','B-1s':'Carving'};
+      return {
+        name, price, img: U + img, type: shortType, category: isSoft ? (CAT[name] || 'Freeride') : 'Carving',
+        tagStyle: tagStyle === 'chip'
+          ? `position:absolute;top:12px;left:12px;z-index:1;font:600 11px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 9px;background:${isSoft ? '#0f1a26' : '#f0a23a'};color:${isSoft ? '#fff' : '#1b1200'}`
+          : `position:absolute;top:0;left:0;right:0;height:5px;background:${c};font-size:0;color:transparent`,
+        dotStyle: `width:8px;height:8px;border-radius:50%;background:${c};display:inline-block`,
+        cardStyle: `background:#fff;border:1px solid #e3e6ea;border-top:4px solid ${c};display:flex;flex-direction:column;gap:8px`
+      };
+    };
+    const softboot = soft.map(mk(SOFT)), hardboot = hard.map(mk(HARD));
+    const tab = this.state.tab ?? (this.props.defaultTab ?? 'soft');
+    const active = tab === 'soft';
+    const tabBase = 'font:700 15px/1 "Barlow Condensed",sans-serif;letter-spacing:.1em;text-transform:uppercase;padding:12px 20px;border:0;cursor:pointer;';
+    const activeBoards = active ? softboot : hardboot;
+    const chip = (on, c) => `display:inline-flex;align-items:center;gap:8px;font:600 13px/1 Barlow,sans-serif;padding:10px 16px;border-radius:999px;cursor:pointer;border:1.5px solid ${on ? '#14181f' : '#d9dee4'};background:${on ? '#14181f' : '#fff'};color:${on ? '#fff' : '#5b6572'}`;
+    const filtered = [...(this.state.soft ? softboot : []), ...(this.state.hard ? hardboot : [])];
+    const byName = n => [...softboot, ...hardboot].find(b => b.name === n);
+    const visible = filtered.slice(0, this.state.shown);
+    const { boot, style } = this.state;
+    const pool = boot === 'soft' ? softboot : boot === 'hard' ? hardboot : [...softboot, ...hardboot];
+    const filtered3 = pool.filter(b => style === 'All' || b.category === style);
+    const visible3 = filtered3.slice(0, this.state.shown3);
+    const seg = (on) => `display:inline-flex;align-items:center;gap:8px;background:none;border:0;padding:0 0 6px;cursor:pointer;font:600 13px/1 Barlow,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:${on ? '#1f6f9c' : '#5b6572'};border-bottom:2px solid ${on ? '#1f6f9c' : 'transparent'}`;
+    const setBoot = (b) => () => this.setState(b === 'all' ? { boot: 'all', style: 'All', shown3: 15 } : { boot: b, shown3: 15 });
+    const styles = ['Freeride','Powder','Big Mountain','Carving'].map(label => ({
+      label,
+      pick: () => this.setState({ style: label, shown3: 15 }),
+      style: `background:none;border:0;padding:0 0 6px;cursor:pointer;font:600 13px/1 Barlow,sans-serif;letter-spacing:.1em;text-transform:uppercase;color:${style === label ? '#1f6f9c' : '#5b6572'};border-bottom:2px solid ${style === label ? '#1f6f9c' : 'transparent'}`
+    }));
+    return {
+      styles, visible3,
+      hasMore3: filtered3.length > visible3.length,
+      canLess3: this.state.shown3 > 15,
+      showControls3: filtered3.length > visible3.length || this.state.shown3 > 15,
+      loadLess3: () => this.setState({ shown3: 15 }),
+      shownLabel3: `${visible3.length} of ${filtered3.length} models`,
+      filterCount: `${filtered3.length} models`,
+      loadMore3: () => this.setState(s => ({ shown3: s.shown3 + 15 })),
+      bootAll: setBoot('all'), bootSoft: setBoot('soft'), bootHard: setBoot('hard'),
+      bootAllStyle: seg(boot === 'all' && style === 'All'), bootSoftStyle: seg(boot === 'soft'), bootHardStyle: seg(boot === 'hard'),
+      softboot, hardboot, activeBoards, filtered, visible,
+      hasMore: filtered.length > visible.length,
+      shownLabel: `${visible.length} of ${filtered.length} models`,
+      loadMore: () => this.setState(s => ({ shown: s.shown + 15 })),
+      softCount: soft.length + ' models', hardCount: hard.length + ' models',
+      activeCount: activeBoards.length + ' models',
+      activeTag: active ? 'Softboot' : 'Alpine hardboot',
+      activeTagStyle: `font:600 11px/1 Barlow,sans-serif;letter-spacing:.08em;text-transform:uppercase;padding:6px 9px;background:${active ? '#0f1a26' : '#f0a23a'};color:${active ? '#fff' : '#1b1200'}`,
+      tabSoftStyle: tabBase + (active ? 'background:#0f1a26;color:#fff' : 'background:transparent;color:#5b6572'),
+      tabHardStyle: tabBase + (!active ? 'background:#0f1a26;color:#fff' : 'background:transparent;color:#5b6572'),
+      pickSoft: () => this.setState({ tab: 'soft' }), pickHard: () => this.setState({ tab: 'hard' }),
+      chipSoftStyle: chip(this.state.soft), chipHardStyle: chip(this.state.hard),
+      toggleSoft: () => this.setState(s => ({ soft: !s.soft || !s.hard ? true : false, shown: 15 })),
+      toggleHard: () => this.setState(s => ({ hard: !s.hard || !s.soft ? true : false, shown: 15 })),
+      bestSelling: ['Park Twin Custom Snowboard','Knapton Twin Custom Snowboard','Tapered Twin Custom Snowboard','Twin Engine Custom Snowboard','Saber SBX Custom Snowboard','Flux Custom Snowboard','B-1 Super-Sport','B-1s'].map(byName),
+      tiles: [{label:'OUR MISSION',img:'photo · workshop'},{label:'custom graphics',img:'photo · topsheet art'},{label:'Donek team',img:'photo · team rider'},{label:'videos',img:'video still'}],
+      apparel: [['Donek Board Sleeve','$99.00','2018/01/back-1-247x1046.png'],['Donek T-shirt','$25.00','2022/05/BlackTshirtFront-247x307.jpg'],['Knapton Long Sleeve','$30.00','2022/05/KnaptonLongSleeve-247x311.jpg'],['Donek Hoodie','$50.00','2022/05/BlackHoodieFront-247x256.jpg'],['Donek Zipper Hoodie','$50.00','2024/11/Proof_Donek_Snowboards_Logo-02-247x335.png'],['Wax Scraper','$12.00','2021/04/scraper-247x138.jpg'],['Deeluxe Heel Harness Pro','$45.00','2023/10/TCF-heel-harness-pro-1-247x247.jpg'],['Trenched Boot Stiffeners','$48.00','2025/09/Boot-Stiffeners-247x179.jpg']].map(([name,price,img]) => ({name,price,img:U+img})),
+      news: [
+        {date:'27 Aug',title:'Donek Snowboards Remain Duty-Free for Canadians',excerpt:'With recent headlines about US-Canada trade disputes, Canadians might be wondering if ordering a custom [...]'},
+        {date:'03 Jun',title:'Be a Part of the Donek Team!',excerpt:'Application Rules You have a limited time, 8 days, to submit a proper application. Applications after [...]'},
+        {date:'19 Apr',title:'Donek Snowboards at The Gathering 2026: Elevating Next-Gen Riders',excerpt:'From May 7–10, Donek Snowboards is proud to be part of The Gathering, a premier [...]'},
+        {date:'12 Apr',title:'Carving the Andes 2026: A Summer Snowboard Camp in Chile for Riders Who Want to Progress',excerpt:'If you’ve ever wanted to keep your snowboard season going through the summer while improving [...]'}
+      ]
+    };
+  }
+}
+</script>
+</body>
+</html>
