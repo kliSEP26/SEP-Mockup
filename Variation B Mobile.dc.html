@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Open+Sans:wght@400;600;700&display=swap"><style>body{margin:0;background:#FFFFFF;font-family:'Open Sans',Arial,sans-serif;color:#555555;font-size:15px;line-height:1.6}*{box-sizing:border-box}a{color:#3F6DB5;text-decoration:none}a:hover{color:#2F5796}h1,h2,h3,h4,h5,p{margin:0}button{font-family:inherit}input{font-family:inherit}@keyframes heroImgIn{from{opacity:0;transform:translateX(40px) scale(1.04)}to{opacity:1;transform:none}}@keyframes riseIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}::-webkit-scrollbar{display:none}</style></helmet>
+<div style="width:100%;max-width:430px;min-width:360px;margin:0 auto;background:#FFFFFF;overflow:clip;overflow-clip-margin:0;position:relative" data-screen-label="Variation B Mobile">
+
+<div style="background:#3F6DB5;padding:9px 16px;text-align:center;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#FFFFFF;line-height:1.4">All custom builds currently have a 4–6 week build time · <a href="#" style="color:#FFFFFF;text-decoration:underline;text-underline-offset:3px">FAQ</a></div>
+
+<div ref="{{ navRef }}" style="position:sticky;top:0;z-index:40;background:rgba(17,17,17,.94);backdrop-filter:blur(8px);height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;transition:height .35s ease,background .35s ease">
+  <button onClick="{{ toggleMenu }}" aria-label="Menu" style="width:44px;height:44px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;background:none;border:0;cursor:pointer;padding:0">
+    <span style="{{ bar1 }}"></span><span style="{{ bar2 }}"></span><span style="{{ bar3 }}"></span>
+  </button>
+  <a href="#" style="display:flex;align-items:center"><img src="assets/donek-logo-white.png" alt="Donek Custom Snowboards" style="height:32px;width:auto;display:block"></a>
+  <div style="display:flex;align-items:center;gap:4px">
+    <span style="width:44px;height:44px;display:flex;align-items:center;justify-content:center"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4-4"></path></svg></span>
+    <a href="#" style="width:44px;height:44px;display:flex;align-items:center;justify-content:center;position:relative;color:#FFFFFF"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h11l2-8H6.5"></path><circle cx="9" cy="20" r="1.5"></circle><circle cx="18" cy="20" r="1.5"></circle></svg><span style="position:absolute;top:6px;right:6px;min-width:16px;height:16px;padding:0 4px;border-radius:8px;background:#3F6DB5;color:#FFFFFF;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;line-height:1">0</span></a>
+  </div>
+</div>
+<sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+  <div style="position:fixed;inset:0;z-index:39;background:rgba(17,17,17,.98);padding:110px 24px 40px;display:flex;flex-direction:column;gap:6px;color:#FFFFFF;overflow:auto">
+    <a href="#" style="color:#FFFFFF;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1.2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)">Home</a>
+    <a href="#" style="color:#D6D9DE;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1.2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)">Snowboard Models &amp; Custom Options</a>
+    <a href="#" style="color:#D6D9DE;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1.2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)">In Stock &amp; Accessories</a>
+    <a href="#" style="color:#D6D9DE;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1.2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)">Events</a>
+    <a href="#" style="color:#D6D9DE;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1.2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)">FAQ</a>
+    <a href="#" style="color:#D6D9DE;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1.2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)">News</a>
+    <a href="#" style="color:#D6D9DE;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1.2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)">About Us</a>
+    <a href="#" style="margin-top:auto;display:flex;align-items:center;justify-content:center;gap:12px;background:#3F6DB5;color:#FFFFFF;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:56px;border-radius:2px">Cart /$0.00</a>
+  </div>
+</sc-if>
+
+<section style="position:relative;height:720px;overflow:hidden;background:#1E2A36" data-screen-label="Hero">
+  <div style="position:absolute;inset:0;animation:heroImgIn 1.3s cubic-bezier(.2,.7,.2,1) both">
+    <sc-for list="{{ heroSlides }}" as="s" hint-placeholder-count="1"><img src="{{ s.src }}" alt="" style="{{ s.style }}"></sc-for>
+  </div>
+  <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,22,32,.2) 0%,rgba(14,22,32,.55) 45%,rgba(14,22,32,.9) 100%)"></div>
+  <div style="position:relative;height:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:0 24px 112px;color:#FFFFFF">
+    <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;animation:riseIn .8s .35s cubic-bezier(.2,.7,.2,1) both">Made by snowboarders for snowboarders.</span>
+    <h1 style="font-family:'Bebas Neue',sans-serif;font-size:76px;line-height:.92;margin:14px 0 22px;animation:riseIn .9s .5s cubic-bezier(.2,.7,.2,1) both">The ride of your life awaits</h1>
+    <p style="font-size:15px;line-height:1.45;letter-spacing:.04em;text-transform:uppercase;color:#F2F4F7;animation:riseIn .8s .7s cubic-bezier(.2,.7,.2,1) both">Feel the difference a Donek custom snowboard makes, and never compromise again.</p>
+    <p style="font-size:15px;line-height:1.45;letter-spacing:.04em;text-transform:uppercase;margin-top:12px;color:#F2F4F7;animation:riseIn .8s .82s cubic-bezier(.2,.7,.2,1) both">Handcrafted in Colorado, uniquely designed for your needs</p>
+    <div style="display:flex;flex-direction:column;gap:12px;margin-top:32px;animation:riseIn .8s .98s cubic-bezier(.2,.7,.2,1) both">
+      <a href="#" style="display:flex;align-items:center;justify-content:center;gap:12px;background:#3F6DB5;color:#FFFFFF;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:56px;border-radius:2px">Start your custom board<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
+      <a href="#" style="display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.7);backdrop-filter:blur(4px);color:#FFFFFF;font-size:14px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:56px;border-radius:2px">View all boards</a>
+    </div>
+  </div>
+  <div style="position:absolute;left:24px;bottom:44px;display:flex;align-items:center;gap:8px">
+    <sc-for list="{{ heroSlides }}" as="s" hint-placeholder-count="3"><button onClick="{{ s.pick }}" style="{{ s.dotStyle }}"></button></sc-for>
+    <span style="margin-left:8px;font-family:'Bebas Neue',sans-serif;font-size:15px;letter-spacing:.08em;color:#FFFFFF">{{ heroCounter }}</span>
+  </div>
+  <img src="assets/colorado-seal.png" alt="Handcrafted in Colorado since 1987" style="position:absolute;right:20px;bottom:28px;width:88px;height:auto;filter:drop-shadow(0 4px 14px rgba(0,0,0,.45));animation:riseIn .8s 1.1s cubic-bezier(.2,.7,.2,1) both">
+</section>
+
+<section style="background:#F7F8FA;padding:72px 24px 64px;text-align:center" data-screen-label="Where custom boards come to life">
+  <div data-reveal="" style="display:flex;flex-direction:column;align-items:center;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3F6DB5">Built by hand.&nbsp; Ridden by choice.</span>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:#111827;margin:20px 0 24px">Where custom boards come to life</h2>
+    <p style="font-size:15px;line-height:1.75;color:#5B6572;text-wrap:pretty;text-align:left">Whether you're laying down carves, racing gates, slashing pow, or catching air, a Donek Custom Snowboard is sure to upgrade your performance on the hill. Each Donek board is custom built based on the rider's needs and measurements, and you never have to compromise when it comes to aesthetics. Browse and compare our available board models and complete the form below to provide our engineers with information about you and your riding. Our team of experts will assist you with choosing the board, sizing, and specifications that are right for you. You can choose a topsheet and base graphic from our library, send in your custom artwork, or work with our in-house designer to create a one of a kind graphic that's sure to turn some heads on the mountain.</p>
+    <a href="#" style="display:flex;align-items:center;justify-content:center;gap:12px;background:#3F6DB5;color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:54px;width:100%;border-radius:2px;margin-top:28px">Start here<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
+  </div>
+  <div data-reveal="" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:40px;opacity:0;transform:translateY(28px);transition:opacity .8s .15s ease,transform .8s .15s ease">
+    <sc-for list="{{ tiles }}" as="t" hint-placeholder-count="4">
+      <a href="#" style="position:relative;display:block;height:220px;overflow:hidden;border-radius:2px;background:#1E2A36;color:#FFFFFF;text-align:left">
+        <img src="{{ t.img }}" alt="{{ t.label }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(.62);transition:transform .7s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.1)">
+        <span style="position:absolute;inset:0;padding:18px 16px;display:flex;flex-direction:column;pointer-events:none">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:#7FB0E8;line-height:1">{{ t.n }}</span>
+          <span style="width:28px;height:2px;background:#7FB0E8;margin:8px 0 14px"></span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;line-height:1;color:#FFFFFF">{{ t.label }}</span>
+          <span style="margin-top:auto;width:36px;height:36px;border-radius:50%;border:1.5px solid rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+</section>
+
+<section style="padding:72px 0 0" data-screen-label="Best selling boards">
+  <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;padding:0 24px;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3F6DB5;padding-bottom:8px;border-bottom:2px solid #3F6DB5;align-self:flex-start">Built by hand. Ridden by choice.</span>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;color:#111827">Best Selling Boards</h3>
+    <p style="font-size:15px;line-height:1.65;color:#5B6572">Each board is custom built for your exact specs. Handcrafted in Colorado. Built to ride anywhere.</p>
+  </div>
+  <div style="display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px 24px 8px;-webkit-overflow-scrolling:touch">
+    <sc-for list="{{ bestSelling }}" as="b" hint-placeholder-count="5">
+      <a href="#" style="width:260px;flex-shrink:0;scroll-snap-align:start;display:flex;flex-direction:column;border:1px solid #E2E4E8;background:#FFFFFF;color:#111827">
+        <span style="height:280px;background:#F7F8FA;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ b.img }}" alt="{{ b.name }}" style="height:240px;width:auto;max-width:80%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.04)"></span>
+        <span style="display:flex;flex-direction:column;padding:16px 18px 18px;gap:6px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3F6DB5">{{ b.cat }}</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.05;color:#111827">{{ b.name }}</span>
+          <span style="font-size:14px;line-height:1.5;color:#5B6572;min-height:42px">{{ b.desc }}</span>
+          <span style="display:flex;justify-content:space-between;align-items:center;margin-top:6px"><span style="font-size:16px;font-weight:700;color:#111827">{{ b.price }}</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+  <div style="padding:16px 24px 0"><a href="#" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #111827;color:#111827;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:52px">View all boards<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a></div>
+</section>
+<div style="margin:32px 24px 0;padding:22px 20px;background:#F7F8FA;border:1px solid #E2E4E8;display:flex;flex-direction:column;gap:18px">
+  <div style="display:flex;gap:14px;align-items:flex-start">
+    <span style="width:44px;height:44px;border-radius:50%;border:1.5px solid #3F6DB5;display:flex;align-items:center;justify-content:center;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#3F6DB5" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M15 9l-2 6-4-2 2-6z"></path></svg></span>
+    <div><h5 style="font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;color:#111827;margin-bottom:6px">Built your way</h5><p style="font-size:14px;line-height:1.55;color:#5B6572">Every Donek board is made to order based on your height, weight, riding style, and terrain. Because no two riders are the same.</p></div>
+  </div>
+  <a href="#" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #111827;color:#111827;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:52px">Start your custom board<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</div>
+
+<section style="position:relative;margin:72px 16px 0;border-radius:12px;overflow:hidden;background:#0F1720" data-screen-label="Ryan Knapton Twin">
+  <img src="assets/knapton.png" alt="Ryan Knapton riding" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 30%">
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,.55)"></div>
+  <div data-reveal="" style="position:relative;min-height:720px;padding:32px 22px;display:flex;flex-direction:column;justify-content:center;color:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FFFFFF;padding-bottom:6px;border-bottom:2px solid #FFFFFF;align-self:flex-start">Signature series</span>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:54px;line-height:.95;color:#FFFFFF;margin:22px 0 16px">Ryan Knapton Twin</h2>
+    <p style="font-size:15px;line-height:1.6;color:#E5E8EC;text-wrap:pretty">Designed in collaboration with alpine carving legend Ryan Knapton. Built to lay down the deepest, cleanest trenches of your life. Unmatched edge hold. Wide stance options. The ultimate carving twin.</p>
+    <div style="margin-top:22px;padding:18px 18px 16px;display:flex;gap:12px;align-items:flex-start;background:rgba(40,44,50,.72);backdrop-filter:blur(8px)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:32px;line-height:.7;color:#7FB0E8">“</span>
+      <div style="display:flex;flex-direction:column;gap:8px"><p style="font-size:15px;line-height:1.55;font-style:italic;color:#FFFFFF">A board has to feel like an extension of you. thats what we build at DONEK”</p><span style="font-size:14px;color:#FFFFFF">-Ryan Knapton Twin</span></div>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-top:22px">
+      <a href="#" style="display:flex;align-items:center;justify-content:center;gap:12px;background:#3F6DB5;color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:54px;border-radius:2px">Explore Collection<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"></path></svg></a>
+      <a href="#" style="display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,.3);color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:54px;border-radius:2px">Watch Ryan ride</a>
+    </div>
+  </div>
+</section>
+
+<div style="background:#FFFFFF;margin-top:96px">
+<section style="position:relative;padding:72px 24px 72px;display:flex;flex-direction:column;gap:40px" data-screen-label="Custom graphics">
+  <div style="position:absolute;inset:0;background:#111111;clip-path:polygon(0 40px,100% 0,100% 100%,0 100%);overflow:hidden"><img src="assets/custom-graphics-bg.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center"><div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.55) 60%,rgba(0,0,0,.35) 100%)"></div></div>
+  <div data-reveal="" style="position:relative;display:flex;flex-direction:column;gap:14px;color:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FFFFFF;padding-bottom:6px;border-bottom:2px solid #FFFFFF;align-self:flex-start">Your board. Your vision.</span>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:60px;line-height:.95;color:#FFFFFF">Custom Graphics</h2>
+    <p style="font-size:15px;line-height:1.6;color:#E5E8EC;text-wrap:pretty">Make it yours. Our custom graphics program lets you bring your ideas to life with unlimited creativity and the same unmatched Donek performance.</p>
+    <div style="display:flex;flex-direction:column;gap:18px;margin-top:10px">
+      <sc-for list="{{ graphicPerks }}" as="g" hint-placeholder-count="4">
+        <div style="display:flex;gap:14px;align-items:flex-start">
+          <span style="width:44px;height:44px;border:1.5px solid #3F6DB5;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#7FB0E8;font-family:'Bebas Neue',sans-serif;font-size:18px">{{ g.n }}</span>
+          <div style="display:flex;flex-direction:column;gap:2px"><span style="font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#FFFFFF">{{ g.title }}</span><span style="font-size:13px;line-height:1.5;color:#D6D9DE">{{ g.desc }}</span></div>
+        </div>
+      </sc-for>
+    </div>
+    <a href="#" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #FFFFFF;color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:54px;margin-top:10px">Start your custom design<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+  <div style="position:relative;display:flex;align-items:flex-end;justify-content:center;gap:18px;height:440px">
+    <img src="assets/board-floral.png" alt="Floral custom graphic" data-reveal="" style="height:440px;width:92px;object-fit:contain;object-position:bottom;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6));opacity:0;transform:translateY(40px);transition:opacity .9s 0s ease,transform .9s 0s cubic-bezier(.2,.7,.2,1)">
+    <img src="assets/board-split.png" alt="Orange and red split custom graphic" data-reveal="" style="height:440px;width:92px;object-fit:contain;object-position:bottom;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6));opacity:0;transform:translateY(40px);transition:opacity .9s .35s ease,transform .9s .35s cubic-bezier(.2,.7,.2,1)">
+    <img src="assets/board-wolf.png" alt="Wolf turquoise custom graphic" data-reveal="" style="height:440px;width:92px;object-fit:contain;object-position:bottom;filter:drop-shadow(0 20px 30px rgba(0,0,0,.6));opacity:0;transform:translateY(40px);transition:opacity .9s .7s ease,transform .9s .7s cubic-bezier(.2,.7,.2,1)">
+  </div>
+</section>
+</div>
+
+<section style="padding:72px 24px 64px;background:#FFFFFF" data-screen-label="Snowboards">
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <button onClick="{{ bootSoft }}" style="{{ softHeadStyle }}">
+      <span style="position:absolute;right:0;top:0;width:150px;height:100%;overflow:hidden;opacity:.85"><img src="assets/action-2.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:70% 20%;mask-image:linear-gradient(90deg,transparent,#000 55%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 55%)"></span>
+      <span style="position:relative;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3F6DB5;padding-bottom:6px;border-bottom:2px solid #3F6DB5;align-self:flex-start">Softboot collection</span>
+      <span style="position:relative;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:#111827;margin:14px 0 10px;max-width:200px">Softboot Snowboards</span>
+      <span style="position:relative;font-size:13px;line-height:1.6;color:#5B6572;max-width:200px">Built for power, control, and all-mountain performance. Engineered for riders who demand precision and progression.</span>
+    </button>
+    <button onClick="{{ bootHard }}" style="{{ hardHeadStyle }}">
+      <span style="position:absolute;right:0;top:0;width:150px;height:100%;overflow:hidden;opacity:.85"><img src="assets/action-1.png" alt="" style="width:100%;height:100%;object-fit:cover;object-position:60% 30%;mask-image:linear-gradient(90deg,transparent,#000 55%);-webkit-mask-image:linear-gradient(90deg,transparent,#000 55%)"></span>
+      <span style="position:relative;font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3F6DB5;padding-bottom:6px;border-bottom:2px solid #3F6DB5;align-self:flex-start">Alpine collection</span>
+      <span style="position:relative;font-family:'Bebas Neue',sans-serif;font-size:36px;line-height:1;color:#111827;margin:14px 0 10px;max-width:200px">Alpine Hardboot Snowboards</span>
+      <span style="position:relative;font-size:13px;line-height:1.6;color:#5B6572;max-width:200px">Built for steep lines, high speed, and alpine terrain. Maximum edge hold. Uncompromising performance.</span>
+    </button>
+  </div>
+  <div style="margin:32px -24px 0;padding:0 24px 14px;border-bottom:1px solid #E2E4E8;display:flex;gap:22px;overflow-x:auto;white-space:nowrap">
+    <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9AA3AE;flex-shrink:0">Filter by:</span>
+    <sc-for list="{{ filters }}" as="f" hint-placeholder-count="7"><button onClick="{{ f.pick }}" style="{{ f.style }}">{{ f.label }}</button></sc-for>
+  </div>
+  <span style="display:block;margin-top:14px;font-size:12px;font-weight:600;color:#5B6572">{{ gridCount }}</span>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px">
+    <sc-for list="{{ gridVisible }}" as="b" hint-placeholder-count="4">
+      <a href="#" style="display:flex;flex-direction:column;border:1px solid #E2E4E8;background:#FFFFFF;color:#111827">
+        <span style="height:210px;background:#F7F8FA;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative"><span style="{{ b.badgeStyle }}">{{ b.type }}</span><img src="{{ b.img }}" alt="{{ b.name }}" style="height:180px;width:auto;max-width:80%;object-fit:contain;mix-blend-mode:multiply;transition:transform .5s cubic-bezier(.2,.7,.2,1)" style-hover="transform:scale(1.04)"></span>
+        <span style="display:flex;flex-direction:column;padding:12px 12px 14px;gap:4px">
+          <span style="font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3F6DB5">{{ b.cat }}</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:20px;line-height:1.05;color:#111827">{{ b.name }}</span>
+          <span style="font-size:14px;font-weight:700;color:#111827;margin-top:4px">{{ b.price }}</span>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+  <sc-if value="{{ gridControls }}" hint-placeholder-val="{{ false }}">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:28px">
+      <div style="display:flex;gap:10px;width:100%">
+        <sc-if value="{{ gridHasMore }}" hint-placeholder-val="{{ false }}"><button onClick="{{ gridMore }}" style="flex:1;background:#111827;color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:52px;border:0;cursor:pointer">Load more</button></sc-if>
+        <sc-if value="{{ gridCanLess }}" hint-placeholder-val="{{ false }}"><button onClick="{{ gridLess }}" style="flex:1;background:#FFFFFF;color:#111827;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:52px;border:1.5px solid #111827;cursor:pointer">Load less</button></sc-if>
+      </div>
+      <span style="font-size:12px;color:#5B6572">{{ gridShownLabel }}</span>
+    </div>
+  </sc-if>
+</section>
+
+<section style="position:relative;background:#111111;padding:72px 16px 56px;overflow:hidden" data-screen-label="The Donek Difference">
+  <img src="assets/difference.png" alt="" style="position:absolute;left:0;top:0;width:100%;height:560px;object-fit:cover;object-position:center top;opacity:.9">
+  <div style="position:absolute;left:0;top:0;width:100%;height:560px;background:linear-gradient(180deg,rgba(0,0,0,.35) 0%,rgba(0,0,0,.6) 60%,#111111 100%)"></div>
+  <div data-reveal="" style="position:relative;color:#FFFFFF;display:flex;flex-direction:column;gap:14px;padding:0 8px;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FFFFFF;padding-bottom:6px;border-bottom:2px solid #FFFFFF;align-self:flex-start">The Donek Difference</span>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:56px;line-height:.95;color:#FFFFFF">This isn't a checkout. It's a collaboration.</h2>
+    <p style="font-size:15px;line-height:1.6;color:#E5E8EC;text-wrap:pretty">We don't mass produce snowboards. Every Donek board is custom built for one rider and one rider only.</p>
+  </div>
+  <div data-reveal="" style="position:relative;margin-top:40px;background:#FFFFFF;border-radius:16px;padding:36px 20px 24px;display:flex;flex-direction:column;align-items:center;text-align:center;opacity:0;transform:translateY(28px);transition:opacity .8s .1s ease,transform .8s .1s ease">
+    <span style="font-size:16px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:#111827">The Donek Experience</span>
+    <span style="font-size:15px;color:#3F6DB5;margin-top:8px">Custom built. Purposefully made for you.</span>
+    <div style="display:flex;flex-direction:column;gap:22px;width:100%;margin-top:32px">
+      <div style="display:flex;gap:14px;align-items:center;text-align:left"><img src="assets/step-1.png" alt="" style="width:120px;height:80px;object-fit:cover;border-radius:2px;flex-shrink:0"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#3F6DB5">1.</span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#111827;line-height:1.5">Tell us how you ride</span></div></div>
+      <div style="display:flex;gap:14px;align-items:center;text-align:left"><img src="assets/step-2.png" alt="" style="width:120px;height:80px;object-fit:cover;border-radius:2px;flex-shrink:0"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#3F6DB5">2.</span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#111827;line-height:1.5">We design together</span></div></div>
+      <div style="display:flex;gap:14px;align-items:center;text-align:left"><img src="assets/step-3.png" alt="" style="width:120px;height:80px;object-fit:cover;border-radius:2px;flex-shrink:0"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#3F6DB5">3.</span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#111827;line-height:1.5">Your board is handcrafted</span></div></div>
+      <div style="display:flex;gap:14px;align-items:center;text-align:left"><img src="assets/step-4.png" alt="" style="width:120px;height:80px;object-fit:cover;border-radius:2px;flex-shrink:0"><div style="display:flex;flex-direction:column;gap:4px"><span style="font-size:13px;font-weight:700;color:#3F6DB5">4.</span><span style="font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:#111827;line-height:1.5">Ride your custom board</span></div></div>
+    </div>
+    <span style="width:100%;height:1px;background:#E2E4E8;margin:32px 0 24px"></span>
+    <span style="font-size:22px;font-weight:700;color:#111827">Result</span>
+    <span style="font-size:15px;color:#3F6DB5;margin-top:6px">A board that feels like it was made for you, Because it was.</span>
+    <img src="assets/difference-result.png" alt="Rider carving on a custom Donek board" style="width:100%;height:200px;object-fit:cover;border-radius:10px;margin-top:22px">
+  </div>
+</section>
+
+<section style="padding:72px 0 0" data-screen-label="Apparel &amp; merchandise">
+  <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;padding:0 24px;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3F6DB5;padding-bottom:8px;border-bottom:2px solid #3F6DB5;align-self:flex-start">Wear the Donek standard.</span>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;color:#111827">Apparel &amp; Merchandise</h3>
+    <p style="font-size:15px;line-height:1.65;color:#5B6572">Premium quality. Built to last. Repping the Donek mindset wherever you ride, travel, and live.</p>
+  </div>
+  <div style="display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;padding:28px 24px 8px">
+    <sc-for list="{{ apparel }}" as="p" hint-placeholder-count="4">
+      <a href="#" style="width:240px;flex-shrink:0;scroll-snap-align:start;display:flex;flex-direction:column;border:1px solid #E2E4E8;background:#FFFFFF;color:#111827">
+        <span style="height:260px;background:#EEF0F3;display:flex;align-items:center;justify-content:center;overflow:hidden"><img src="{{ p.img }}" alt="{{ p.name }}" style="height:230px;width:auto;max-width:86%;object-fit:contain;mix-blend-mode:multiply"></span>
+        <span style="display:flex;flex-direction:column;padding:16px 18px 18px;gap:6px">
+          <span style="font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#9AA3AE">{{ p.cat }}</span>
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;line-height:1.05;color:#111827">{{ p.name }}</span>
+          <span style="font-size:16px;font-weight:700;color:#3F6DB5;margin-top:4px">{{ p.price }}</span>
+        </span>
+      </a>
+    </sc-for>
+  </div>
+  <div style="margin:24px 24px 0;padding:22px 20px;background:#F7F8FA;border:1px solid #E2E4E8;display:flex;flex-direction:column;gap:18px">
+    <div style="display:flex;gap:14px;align-items:center">
+      <img src="assets/logo.png" alt="Donek — Maker of Fine Snowboards, est. 1987" style="width:64px;height:64px;object-fit:contain;flex-shrink:0">
+      <div><h5 style="font-family:'Bebas Neue',sans-serif;font-size:22px;line-height:1;color:#111827;margin-bottom:6px">Built by hand. Ridden by choice.</h5><p style="font-size:14px;line-height:1.55;color:#5B6572">Every piece of Donek apparel and gear is built with the same attention to detail as our snowboards. Quality you can feel. Built to last.</p></div>
+    </div>
+    <a href="#" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #111827;color:#111827;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:52px">View all apparel &amp; merch<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+  </div>
+</section>
+
+<section style="background:#F7F8FA;margin-top:72px;padding:64px 24px 72px" data-screen-label="Latest news">
+  <div data-reveal="" style="display:flex;flex-direction:column;gap:12px;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#3F6DB5;padding-bottom:8px;border-bottom:2px solid #3F6DB5;align-self:flex-start">Latest news</span>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:46px;line-height:1;color:#111827">Stories from the mountains</h3>
+    <p style="font-size:15px;line-height:1.65;color:#5B6572">Rider stories, product updates, and behind-the-scenes from the Donek team.</p>
+  </div>
+  <div data-reveal="" style="display:flex;flex-direction:column;gap:14px;margin-top:28px;opacity:0;transform:translateY(28px);transition:opacity .8s .15s ease,transform .8s .15s ease">
+    <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+      <a href="#" style="position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:340px;padding:24px 20px;background:#111827;color:#FFFFFF;overflow:hidden;border-radius:2px">
+        <img src="{{ n.img }}" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top">
+        <span style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(17,24,39,.05) 0%,rgba(17,24,39,.55) 45%,rgba(17,24,39,.94) 100%)"></span>
+        <span style="position:relative;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#FFFFFF">{{ n.tag }}</span>
+        <span style="position:relative;font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1.05;color:#FFFFFF;margin:10px 0 10px;text-wrap:pretty">{{ n.title }}</span>
+        <span style="position:relative;font-size:13px;line-height:1.55;color:#D6D9DE">{{ n.excerpt }}</span>
+        <span style="position:relative;display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#FFFFFF;margin-top:16px">Read story<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
+      </a>
+    </sc-for>
+  </div>
+  <a href="#" style="display:flex;align-items:center;justify-content:center;gap:10px;border:1.5px solid #111827;color:#111827;font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;height:52px;margin-top:20px">View all news<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+</section>
+
+<section style="position:relative;padding:64px 24px;display:flex;flex-direction:column;align-items:center;overflow:hidden;background:#1E2A36" data-screen-label="Newsletter">
+  <img src="./cta-mu4i9g69-317s.png" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 35%;opacity:.5">
+  <div style="position:absolute;inset:0;background:rgba(0,0,0,.35)"></div>
+  <div data-reveal="" style="position:relative;display:flex;flex-direction:column;align-items:center;width:100%;color:#FFFFFF;opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease">
+    <span style="font-size:12px;font-weight:700;letter-spacing:.18em;text-transform:uppercase">Newsletter</span>
+    <h3 style="font-family:'Bebas Neue',sans-serif;font-size:48px;line-height:1;color:#FFFFFF;margin:12px 0 28px">Stay in the loop</h3>
+    <form onSubmit="{{ noop }}" style="display:flex;flex-direction:column;gap:10px;width:100%">
+      <input type="email" placeholder="your@email.com" style="height:56px;padding:0 18px;font-size:15px;color:#FFFFFF;background:rgba(0,0,0,.45);border:1px solid rgba(255,255,255,.7);outline:none;transition:box-shadow .3s,border-color .3s" style-focus="box-shadow:0 0 0 4px rgba(127,176,232,.35);border-color:#7FB0E8">
+      <button type="submit" style="height:56px;background:#3F6DB5;color:#FFFFFF;font-size:13px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:0;cursor:pointer">Subscribe</button>
+    </form>
+  </div>
+</section>
+
+<footer style="background:#1B1B1B;color:#D6D9DE;padding:64px 24px 32px" data-screen-label="Footer">
+  <img src="assets/donek-logo-white.png" alt="Donek Custom Snowboards" style="height:72px;width:auto;display:block">
+  <p style="font-size:14px;line-height:1.7;color:#D6D9DE;margin-top:22px">From our shop in Colorado, our very dedicated and creative staff of riders, as well as craftsmen, have been handcrafting some of the best boards and skis in the world since 1987. Donek is a company that which offers an unparalleled level of consultation and customization working with you to build the ultimate ride.</p>
+  <div style="display:flex;gap:22px;color:#3F6DB5;margin-top:22px">
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.3v7A10 10 0 0 0 22 12z"></path></svg>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1" fill="currentColor"></circle></svg>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M23 7.2a3 3 0 0 0-2.1-2.1C19 4.6 12 4.6 12 4.6s-7 0-8.9.5A3 3 0 0 0 1 7.2 31 31 0 0 0 .6 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.9.5 8.9.5 8.9.5s7 0 8.9-.5a3 3 0 0 0 2.1-2.1 31 31 0 0 0 .4-4.8 31 31 0 0 0-.4-4.8zM9.7 15.1V8.9l5.8 3.1z"></path></svg>
+    <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M22 5.9c-.7.3-1.5.5-2.4.6.9-.5 1.5-1.3 1.8-2.3-.8.5-1.7.8-2.6 1a4.1 4.1 0 0 0-7 3.7A11.6 11.6 0 0 1 3.4 4.6a4.1 4.1 0 0 0 1.3 5.5c-.7 0-1.3-.2-1.9-.5 0 2 1.4 3.7 3.3 4.1-.6.2-1.2.2-1.9.1a4.1 4.1 0 0 0 3.8 2.9A8.3 8.3 0 0 1 2 18.4 11.7 11.7 0 0 0 8.3 20c7.6 0 11.7-6.3 11.7-11.7v-.5c.8-.6 1.5-1.3 2-2z"></path></svg>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:32px 16px;margin-top:44px">
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:#FFFFFF;line-height:1;margin-bottom:4px">Explore</span>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Snowboard models &amp; custom options</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Custom graphics</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">In stock &amp; accessories</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Events</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">FAQ</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">News</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">About us</a>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:14px">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;color:#FFFFFF;line-height:1;margin-bottom:4px">Donek Snowboards</span>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Start a custom board</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Snowboard model selector</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Softboot snowboards</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Alpine hardboot snowboards</a>
+      <a href="#" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:#D6D9DE">Kids snowboards</a>
+    </div>
+  </div>
+  <div style="display:flex;flex-direction:column;gap:12px;margin-top:48px;padding-top:24px;border-top:1px solid #333333;font-size:13px;color:#3F6DB5">
+    <div style="display:flex;gap:24px"><a href="#" style="color:#3F6DB5">Privacy Policy</a><a href="#" style="color:#3F6DB5">Terms of Service</a></div>
+    <span>© 2025 Donek Snowboards. All rights reserved.</span>
+  </div>
+</footer>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:390}}">
+class Component extends DCLogic {
+  state = { hero: 0, boot: 'all', cat: 'All', shown: 4, menuOpen: false };
+  navRef = React.createRef();
+  componentDidMount() {
+    this.timer = setInterval(() => this.setState(s => ({ hero: (s.hero + 1) % 3 })), 6000);
+    this.onScroll = () => {
+      const n = this.navRef.current; if (!n) return;
+      const y = window.scrollY || document.documentElement.scrollTop;
+      n.style.height = y > 40 ? '56px' : '64px';
+      n.style.background = y > 40 ? 'rgba(17,17,17,.72)' : 'rgba(17,17,17,.94)';
+      n.style.backdropFilter = y > 40 ? 'blur(14px) saturate(1.2)' : 'blur(8px)';
+      n.style.boxShadow = y > 40 ? '0 8px 30px rgba(0,0,0,.35)' : 'none';
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    this.io = new IntersectionObserver(entries => entries.forEach(e => {
+      if (e.isIntersecting) { e.target.style.opacity = '1'; e.target.style.transform = 'none'; this.io.unobserve(e.target); }
+    }), { threshold: 0.01, rootMargin: '0px 0px -5% 0px' });
+    this.observeReveals();
+  }
+  componentDidUpdate() { this.observeReveals(); }
+  observeReveals() {
+    if (!this.io) return;
+    document.querySelectorAll('[data-reveal]:not([data-observed])').forEach(el => { el.setAttribute('data-observed', '1'); this.io.observe(el); });
+  }
+  componentWillUnmount() { clearInterval(this.timer); window.removeEventListener('scroll', this.onScroll); this.io && this.io.disconnect(); }
+  renderVals() {
+    const U = 'https://donek.com/wp-content/uploads/';
+    const { hero, boot, cat, shown, menuOpen } = this.state;
+    const heroSlides = ['assets/hero-1.png', 'assets/hero-2.png', 'assets/hero-3.png'].map((src, i) => ({
+      src,
+      style: `position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;transition:opacity 1.2s ease;opacity:${i === hero ? 1 : 0}`,
+      dotStyle: `height:3px;border:0;padding:0;cursor:pointer;transition:width .4s,background .4s;width:${i === hero ? '40px' : '20px'};background:${i === hero ? '#FFFFFF' : 'rgba(255,255,255,.4)'}`,
+      pick: () => this.setState({ hero: i })
+    }));
+    const SOFT = 'Softboot', HARD = 'Alpine Hardboot';
+    const mk = (type) => ([name, cat, desc, price, img]) => ({
+      name, cat, desc, price, img: U + img, type,
+      badgeStyle: `position:absolute;top:10px;left:10px;font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:5px 8px;background:${type === SOFT ? '#111827' : '#3F6DB5'};color:#FFFFFF`
+    });
+    const softboot = [
+      ['Park Twin Custom Snowboard', 'Signature', 'Carve deeper. Ride wider.', '$840.00', '2021/06/Park-Twin.png'],
+      ['B1P', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$815.00', '2020/09/b1s-7-graphic-01.png'],
+      ['Transition Custom Snowboard', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$1,015.00', '2021/08/transition.png'],
+      ['Knapton Twin Custom Snowboard', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$865.00', '2021/06/Knapton-1.png']
+    ].map(mk(SOFT));
+    const hardboot = [
+      ['MK Custom Snowboard', 'Big Mountain', 'Built for big lines. Made to charge.', '$1,215.00 – $1,245.00', '2018/07/mk-graphic-2018.png'],
+      ['Pulse purchase', 'Powder', 'Deep days. Effortless float.', '$1,015.00', '2014/09/pulsetemplate.png'],
+      ['Pulse Custom Snowboard', 'Powder', 'Deep days. Effortless float.', '$1,015.00', '2014/09/pulsetemplate.png'],
+      ['Secret purchase', 'Freeride', 'Float, control, and confidence.', '$1,390.00', '2016/10/pulse-solid-black.png']
+    ].map(mk(HARD));
+    const bestSelling = [
+      ['Park Twin Custom Snowboard', 'Signature', 'Carve deeper. Ride wider.', '$840.00', '2021/06/Park-Twin.png'],
+      ['Knapton Twin Custom Snowboard', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$865.00', '2021/06/Knapton-1.png'],
+      ['Tapered Twin Custom Snowboard', 'Freeride', 'Float further. Ride deeper.', '$865.00', '2025/01/taperedtwin.png'],
+      ['Saber SBX Custom Snowboard', 'Alpine', 'Charge harder. Edge sharper.', '$1,199', '2021/06/saber.png'],
+      ['Flux Custom Snowboard', 'Signature', 'Carve deeper. Ride wider.', '$1,040.00', '2021/06/flux.png']
+    ].map(mk(SOFT));
+    const apparel = [
+      ['Donek Board Sleeve', 'Accessories', '$99.00', '2018/01/back-1-247x1046.png'],
+      ['Knapton Long Sleeve', 'Apparel', '$30.00', '2022/05/KnaptonLongSleeve-247x311.jpg'],
+      ['Donek T-Shirt', 'Apparel', '$25.00', '2022/05/BlackTshirtFront-247x307.jpg'],
+      ['Donek Hoodie', 'Apparel', '$50.00', '2022/05/BlackHoodieFront-247x256.jpg']
+    ].map(([name, cat, price, img]) => ({ name, cat, price, img: U + img }));
+    const pad = n => String(n + 1).padStart(2, '0');
+    const headStyle = (on) => `position:relative;overflow:hidden;text-align:left;display:flex;flex-direction:column;align-items:flex-start;padding:24px 22px 26px;min-height:200px;background:${on ? '#F7F8FA' : '#FFFFFF'};border:1.5px solid ${on ? '#3F6DB5' : '#E2E4E8'};cursor:pointer;transition:border-color .3s,background .3s;font-family:inherit;width:100%`;
+    const pool = boot === 'soft' ? softboot : boot === 'hard' ? hardboot : [...softboot, ...hardboot];
+    const filteredGrid = pool.filter(b => cat === 'All' || b.cat === cat);
+    const gridVisible = filteredGrid.slice(0, shown);
+    const tabStyle = on => `flex-shrink:0;background:none;border:0;padding:0 0 6px;cursor:pointer;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:${on ? '#3F6DB5' : '#5B6572'};border-bottom:2px solid ${on ? '#3F6DB5' : 'transparent'};transition:color .25s,border-color .25s`;
+    const filters = [
+      { label: 'All', on: boot === 'all' && cat === 'All', pick: () => this.setState({ boot: 'all', cat: 'All', shown: 4 }) },
+      { label: 'Softboot', on: boot === 'soft', pick: () => this.setState({ boot: 'soft', shown: 4 }) },
+      { label: 'Alpine Hardboot', on: boot === 'hard', pick: () => this.setState({ boot: 'hard', shown: 4 }) },
+      ...['All Mountain', 'Freeride', 'Powder', 'Big Mountain'].map(c => ({ label: c, on: cat === c, pick: () => this.setState({ cat: cat === c ? 'All' : c, shown: 4 }) }))
+    ].map(f => ({ label: f.label, pick: f.pick, style: tabStyle(f.on) }));
+    const bar = (t) => `display:block;width:22px;height:2px;background:#FFFFFF;transition:transform .3s,opacity .3s;${t}`;
+    return {
+      navRef: this.navRef, heroSlides, heroCounter: `${pad(hero)} / 03`,
+      menuOpen, toggleMenu: () => this.setState(s => ({ menuOpen: !s.menuOpen })),
+      bar1: bar(menuOpen ? 'transform:translateY(7px) rotate(45deg)' : ''), bar2: bar(menuOpen ? 'opacity:0' : ''), bar3: bar(menuOpen ? 'transform:translateY(-7px) rotate(-45deg)' : ''),
+      tiles: [
+        { n: '01', label: 'Our Mission', img: 'assets/tile-mission.png' },
+        { n: '02', label: 'Custom Graphics', img: 'assets/tile-graphics.png' },
+        { n: '03', label: 'Donek Team', img: 'assets/tile-team.png' },
+        { n: '04', label: 'Videos', img: 'assets/tile-videos.png' }
+      ],
+      bestSelling, apparel,
+      graphicPerks: [
+        { n: '01', title: 'Unlimited options', desc: 'Create a truly one-of-a-kind board.' },
+        { n: '02', title: 'Premium quality', desc: 'High-resolution prints with durable finish.' },
+        { n: '03', title: 'Built to perform', desc: 'Custom looks. Same Donek strength and ride.' },
+        { n: '04', title: 'Expert support', desc: 'Work with our team from concept to snow.' }
+      ],
+      softHeadStyle: headStyle(boot === 'soft'), hardHeadStyle: headStyle(boot === 'hard'),
+      bootSoft: () => this.setState({ boot: boot === 'soft' ? 'all' : 'soft', shown: 4 }),
+      bootHard: () => this.setState({ boot: boot === 'hard' ? 'all' : 'hard', shown: 4 }),
+      filters, gridVisible, gridCount: `${filteredGrid.length} models`,
+      gridControls: filteredGrid.length > gridVisible.length || shown > 4,
+      gridHasMore: filteredGrid.length > gridVisible.length, gridCanLess: shown > 4,
+      gridShownLabel: `${gridVisible.length} of ${filteredGrid.length} models`,
+      gridMore: () => this.setState(s => ({ shown: s.shown + 4 })), gridLess: () => this.setState({ shown: 4 }),
+      news: [
+        { tag: 'Featured', img: 'assets/news-1.png', title: 'Be a part of the Donek team!', excerpt: 'Application Rules You have a limited time, 8 days, to submit a proper application. Applications after Thursday, June 11th, will not b…' },
+        { tag: 'Uncategorized', img: 'assets/news-2.png', title: 'Donek Snowboards at The Gathering 2026: Elevating Next-Gen Riders', excerpt: 'From May 7–10, Donek Snowboards is proud to be part of The Gathering, a premier snowboard development event hosted by Canada Snowboard at Sunshine Village, Banff. Built for e…' },
+        { tag: 'Events, Ryan Knapton', img: 'assets/news-3.png', title: 'Carving the Andes 2026: A Summer Snowboard Camp in Chile for Riders Who Want to Progress', excerpt: 'If you’ve ever wanted to keep your snowboard season going through the summer while improving your carving with high-level coaching, Carving the Andes 2026 should be on your ra…' }
+      ],
+      noop: e => e.preventDefault()
+    };
+  }
+}
+</script>
+</body>
+</html>
