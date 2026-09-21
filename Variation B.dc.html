@@ -103,7 +103,7 @@
           <span style="display:flex;flex-direction:column;padding:22px 22px 24px;gap:8px">
             <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3F6DB5">{{ b.cat }}</span>
             <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1.05;color:#111827">{{ b.name }}</span>
-            <span style="font-size:15px;line-height:1.6;color:#5B6572;min-height:48px">{{ b.desc }}</span>
+            <span style="font-size:15px;line-height:1.6;color:#5B6572">{{ b.desc }}</span>
             <span style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="font-size:17px;font-weight:700;color:#111827">{{ b.price }}</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
           </span>
         </a>
@@ -195,7 +195,7 @@
         <span style="display:flex;flex-direction:column;padding:22px 22px 24px;gap:8px">
           <span style="font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:#3F6DB5">{{ b.cat }}</span>
           <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;line-height:1.05;color:#111827">{{ b.name }}</span>
-          <span style="font-size:15px;line-height:1.6;color:#5B6572;min-height:48px">{{ b.desc }}</span>
+          <span style="font-size:15px;line-height:1.6;color:#5B6572">{{ b.desc }}</span>
           <span style="display:flex;justify-content:space-between;align-items:center;margin-top:8px"><span style="font-size:17px;font-weight:700;color:#111827">{{ b.price }}</span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#9AA3AE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></span>
         </span>
       </a>
@@ -345,7 +345,7 @@
     </div>
   </div>
   <div style="display:flex;justify-content:space-between;align-items:center;margin-top:96px;padding-top:36px;border-top:1px solid #333333;font-size:16px;color:#3F6DB5">
-    <span>© 2026 Donek Snowboards. All rights reserved.</span>
+    <span>© 2025 Donek Snowboards. All rights reserved.</span>
     <div style="display:flex;gap:32px"><a href="#" style="color:#3F6DB5" style-hover="color:#FFFFFF">Privacy Policy</a><a href="#" style="color:#3F6DB5" style-hover="color:#FFFFFF">Terms of Service</a></div>
   </div>
 </footer>
@@ -392,22 +392,38 @@ class Component extends DCLogic {
       badgeStyle: `position:absolute;top:14px;left:14px;font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;padding:6px 10px;background:${type === SOFT ? '#111827' : '#3F6DB5'};color:#FFFFFF`
     });
     const softboot = [
-      ['Park Twin Custom Snowboard', 'Signature', 'Carve deeper. Ride wider.', '$840.00', '2021/06/Park-Twin.png'],
-      ['B1P', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$815.00', '2020/09/b1s-7-graphic-01.png'],
-      ['Transition Custom Snowboard', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$1,015.00', '2021/08/transition.png'],
-      ['Knapton Twin Custom Snowboard', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$865.00', '2021/06/Knapton-1.png']
+      ['Knapton Twin Custom Snowboard', 'Carving', '', '$865.00', '2021/06/Knapton-1.png'],
+      ['Twin Engine Custom Snowboard', 'Carving', '', '$865.00', '2025/01/taperedtwin.png'],
+      ['Tapered Twin Custom Snowboard', 'Carving', '', '$865.00', '2025/01/taperedtwin.png'],
+      ['Scythe Custom Snowboard', 'Carving', '', '$865.00', '2021/06/Incline.png'],
+      ['Incline Custom Snowboard', 'Carving', '', '$865.00', '2021/06/Incline.png'],
+      ['Saber SBX Custom Snowboard', 'Carving', '', '$1,015.00', '2021/06/saber.png'],
+      ['Flux Custom Snowboard', 'Carving', '', '$1,040.00', '2021/06/flux.png'],
+      ['Aloha Custom Snowboard', 'Carving', '', '$915.00', '2020/12/aloha-topsheet.png'],
+      ['Transition Custom Snowboard', 'Race & Competition', '', '$1,015.00', '2021/08/transition.png'],
+      ['B-1 Super-Sport', 'Race & Competition', '', '$1,515.00', '2024/05/B-1s-Super-Sport.png'],
+      ['B-1s', 'Race & Competition', '', '$1,515.00', '2020/09/b1s-7-graphic-01.png'],
+      ['Baker Custom Snowboard', 'Race & Competition', '', '$965.00', '2021/08/baker.png'],
+      ['Junior Custom Snowboard', 'Race & Competition', '', '$560.00', '2021/08/junior.png'],
+      ['Saber SRT Custom Snowboard', 'Race & Competition', '', '$1,190.00 – $1,220.00', '2021/08/saberSRT.png'],
+      ['Sabbath', 'Freeride & Backcountry', '', '$865.00', '2025/04/Death-Vine-preview-01.png'],
+      ['Kona Custom Snowboard', 'Freeride & Backcountry', '', '$1,265.00', '2024/03/kona.png'],
+      ['Nomad Custom Snowboard', 'Freeride & Backcountry', '', '$915.00', '2021/06/nomad.png'],
+      ['Park Twin Custom Snowboard', 'Freestyle & Park', '', '$840.00', '2021/06/Park-Twin.png']
     ].map(mk(SOFT));
     const hardboot = [
-      ['MK Custom Snowboard', 'Big Mountain', 'Built for big lines. Made to charge.', '$1,215.00 – $1,245.00', '2018/07/mk-graphic-2018.png'],
-      ['Pulse purchase', 'Powder', 'Deep days. Effortless float.', '$1,015.00', '2014/09/pulsetemplate.png'],
-      ['Pulse Custom Snowboard', 'Powder', 'Deep days. Effortless float.', '$1,015.00', '2014/09/pulsetemplate.png'],
-      ['Secret purchase', 'Freeride', 'Float, control, and confidence.', '$1,390.00', '2016/10/pulse-solid-black.png']
+      ['Pulse Custom Snowboard', 'Alpine Race', '', '$1,015.00', '2014/09/pulsetemplate.png'],
+      ['Secret Custom Snowboard', 'Alpine Race', '', '$1,290.00', '2016/10/pulse-solid-black.png'],
+      ['Talon Custom Snowboard', 'Alpine Race', '', '$660.00', '2019/08/tallon_eagle.png'],
+      ['MK Custom Snowboard', 'Alpine Freecarving', '', '$1,215.00 – $1,245.00', '2018/07/mk-graphic-2018.png'],
+      ['Voyager Custom Snowboard', 'Alpine Freecarving', '', '$1,015.00', '2015/10/legacy-PantherS.png'],
+      ['Turner FC Snowboard', 'Alpine Freecarving', '', '$1,015.00', '2016/10/freecarve-zebra.png']
     ].map(mk(HARD));
     const bestSelling = [
       ['Park Twin Custom Snowboard', 'Signature', 'Carve deeper. Ride wider.', '$840.00', '2021/06/Park-Twin.png'],
       ['Knapton Twin Custom Snowboard', 'All Mountain', 'Versatile. Powerful. Built for any terrain.', '$865.00', '2021/06/Knapton-1.png'],
       ['Tapered Twin Custom Snowboard', 'Freeride', 'Float further. Ride deeper.', '$865.00', '2025/01/taperedtwin.png'],
-      ['Saber SBX Custom Snowboard', 'Alpine', 'Charge harder. Edge sharper.', '$1,199', '2021/06/saber.png'],
+      ['Saber SBX Custom Snowboard', 'Alpine', 'Charge harder. Edge sharper.', '$1,015.00', '2021/06/saber.png'],
       ['Flux Custom Snowboard', 'Signature', 'Carve deeper. Ride wider.', '$1,040.00', '2021/06/flux.png']
     ].map(mk(SOFT));
     const apparel = [
@@ -438,7 +454,7 @@ class Component extends DCLogic {
       { label: 'All', on: boot === 'all' && cat === 'All', pick: () => this.setState({ boot: 'all', cat: 'All', shown: 8 }) },
       { label: 'Softboot', on: boot === 'soft', pick: () => this.setState({ boot: 'soft', shown: 8 }) },
       { label: 'Alpine Hardboot', on: boot === 'hard', pick: () => this.setState({ boot: 'hard', shown: 8 }) },
-      ...['All Mountain', 'Freeride', 'Powder', 'Big Mountain'].map(c => ({ label: c, on: cat === c, pick: () => this.setState({ cat: cat === c ? 'All' : c, shown: 8 }) }))
+      ...['Carving', 'Race & Competition', 'Freeride & Backcountry', 'Freestyle & Park', 'Alpine Race', 'Alpine Freecarving'].map(c => ({ label: c, on: cat === c, pick: () => this.setState({ cat: cat === c ? 'All' : c, shown: 8 }) }))
     ].map(f => ({ label: f.label, pick: f.pick, style: tabStyle(f.on) }));
     return {
       navRef: this.navRef, heroSlides, heroCounter: `${pad(hero)} / 03`,
