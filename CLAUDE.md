@@ -1,0 +1,11 @@
+# Button system (always apply)
+- Radius = height × ratio, never hard-coded per size: border-radius: clamp(4px, calc(var(--btn-height) * var(--btn-radius-ratio)), 12px). Default ratio 0.2, set as --btn-radius-ratio on the page root.
+- Padding-inline = height × 0.4. Content centred with (inline-)flex.
+- Do NOT derive font size from height — keep the project's existing button typography.
+- Sizes: xs 28 · sm 32 · md 40 (default) · lg 48 · xl 56.
+- Variants (ratio only): sharp 0.1 · default 0.2 · pill 0.5 (pill skips the 12px max: radius = height × 0.5).
+- Inputs/selects/toggles of the same height use the same radius formula.
+- Nested elements in rounded containers: inner radius = outer radius − padding.
+- Never apply to buttons that are already circles.
+- DC files forbid CSS classes: apply size/variant inline via --btn-height / --btn-radius-ratio with the formulas above.
+- Donek pages: desktop CTAs xl, nav cart md, newsletter xl (input + button joined); mobile buttons and newsletter lg.
